@@ -3,22 +3,23 @@ import * as React from 'react'
 
 import { Styling } from '../../styles/types'
 
-const baseStyle = css`
-  font-size: 3rem;
+export const baseStyle = () => css`
+    font-size: 3rem;
+`
+export  const baseStyle2 = () => css`
+    font-size: 5rem;
 `
 
-export type ExampleProps = {
-  /**
-   * Title content
-   */
-  content: string
-  styles?: Styling
+interface TitleProps{
+    content: string,
+    styles?: Styling,
+    design?: "baseStyle" | "baseStyle2"
 }
 
-export const Title: React.FC<ExampleProps> = ({ content, styles }) => (
-  <h1 css={[baseStyle, styles]} aria-label={content}>
-    {content}
-  </h1>
-)
-
-Title.displayName = 'Title'
+export const Title = ({ content,  styles, design, ...props }: TitleProps) => {
+    return (
+        <div className={ "dummy"} {...props} css={design}>
+            {content }
+        </div>
+    )
+}
